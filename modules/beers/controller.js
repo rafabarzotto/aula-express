@@ -1,19 +1,20 @@
-var Model = require('./model')
+// importação do módulo model.js
+var Model = require('./model');
 
+var msg = "";
 var Controller = {
 	create: function(req, res) {
 	var dados = req.body;
 
 		var model = new Model(dados);
-		var msg = '';
 
 		model.save(function (err, data) {
 			if(err) {
 				console.log("Erro: ", err);
-				msg = err;
+				msg =   err;
 			} else {
 				console.log("Cerveja inserida.", data);
-				msg = data;
+				msg =  data;
 			}
 			res.json(msg);
 		});
@@ -23,22 +24,36 @@ var Controller = {
 		Model.find(query, function(err, data) {
 			if(err) {
 				console.log("Erro: ", err);
-				msg = err;
+				msg =  err;
 			} else {
 				console.log("listagem: ", data);
-				msg = data;
+				msg =   data;
 			}
 			res.json(msg);
 		});
 	},
+    
+    get: function(req, res) {
+		var query = {_id: req.params.id};
+		Model.findOne(query, function(err, data) {
+			if(err) {
+				console.log("Erro: ", err);
+				msg =  err;
+			} else {
+				console.log("listagem: ", data);
+				msg =   data;
+			}
+			res.json(msg);
+		});
+	},
+    
+    
+    
+    
 	update: function(req, res) {
-		var query = {name: /Skol/i};
-		var mod = {
-			name: 'Brahma',
-			alcohol: 4,
-			price: 6,
-			category: 'pilsen'
-		};
+		var query = {_id: req.params.id};
+		var mod = req.body;
+        
 		Model.update(query, mod, function(err, data) {
 			if(err) {
 				console.log("Erro: ", err);
@@ -51,11 +66,11 @@ var Controller = {
 		});
 	},
 	delete: function(req, res) {
-		var query = {name: /Skol/i};
+		var query = {name: /brahma/i};
 		Model.remove(query, function(err, data) {
 			if(err) {
 				console.log("Erro: ", err);
-				msg = err;
+				msg =  err;
 			} else {
 				console.log("Cerveja deletada com sucesso, quantidade: ", data.result);
 				msg = data.result;
@@ -63,6 +78,6 @@ var Controller = {
 			res.json(msg);
 		});
 	}
-}
+};
 
 module.exports = Controller;
