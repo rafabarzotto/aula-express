@@ -1,4 +1,3 @@
-// importação do módulo model.js
 var Model = require('./model');
 
 var msg = "";
@@ -48,8 +47,6 @@ var Controller = {
 	},
     
     
-    
-    
 	update: function(req, res) {
 		var query = {_id: req.params.id};
 		var mod = req.body;
@@ -65,8 +62,9 @@ var Controller = {
 			res.json(msg);
 		});
 	},
+    
 	delete: function(req, res) {
-		var query = {name: /brahma/i};
+		var query = {_id: req.params.id};
 		Model.remove(query, function(err, data) {
 			if(err) {
 				console.log("Erro: ", err);

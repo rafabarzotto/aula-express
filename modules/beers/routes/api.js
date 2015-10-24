@@ -20,5 +20,10 @@ router.get('/:id', function(req, res, next) {
   controller.get(req, res);
 });
 
+router.delete('/:id', function(req, res, next) {
+  controller.delete(req, res);
+});
+
+
 
 module.exports = router;
