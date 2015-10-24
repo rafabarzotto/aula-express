@@ -59,7 +59,7 @@ var Controller = {
 				console.log("listagem: ", data);
 				msg =   data;
 			}
-			res.json(msg);
+			res.render('beer', { title: 'Exibindo uma cerveja', beer: data });
 		});
 	},
     
