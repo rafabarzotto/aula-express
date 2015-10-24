@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'WebMod UNOESC' });
+  res.render('list', { title: 'Listagem de cervejas' });
 });
 
 module.exports = router;
